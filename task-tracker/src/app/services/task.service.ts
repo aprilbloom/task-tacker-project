@@ -16,6 +16,11 @@ export class TaskService {
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.apiUrl);
   }
+
+  deleteTask(task: Task): Observable<Task> {
+    const url = `${this.apiUrl}/${task.id}`;
+    return this.http.delete<Task>(url);
+  }
 }
 
 /* Note: from video https://www.youtube.com/watch?v=3dHNOWTI7H8&t=4884s
@@ -35,8 +40,8 @@ start - json-server --watch db.json
 npm run server
 
 chrome - inspect find:
-network - 
-tasks: 
+network -
+tasks:
 Request URL: http://localhost:5000/tasks
 Request Method: GET
 Status code: 200 OK
